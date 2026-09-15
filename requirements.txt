@@ -1,0 +1,21 @@
+Flask>=3.0
+
+# ── Video/Audio downloading ──────────────────────────────────────────────────
+# yt-dlp is the download engine. imageio-ffmpeg bundles ffmpeg as a fallback
+# if ffmpeg isn't already installed on the system PATH.
+yt-dlp>=2024.1.0
+imageio-ffmpeg>=0.5.1
+
+# ── Resource search & direct PDF download ───────────────────────────────────
+requests>=2.31.0
+
+# ── SlideShare downloader ────────────────────────────────────────────────────
+# Pillow downloads slide images and merges them into a single PDF.
+Pillow>=10.0.0
+
+# ── Scribd downloader ────────────────────────────────────────────────────────
+# selenium drives headless Chrome to render and save Scribd documents as PDF.
+# pypdf is used internally by the scribd-downloader tool for PDF assembly.
+# NOTE: Google Chrome must also be installed on the system for Scribd to work.
+selenium>=4.0.0
+pypdf>=3.0.0

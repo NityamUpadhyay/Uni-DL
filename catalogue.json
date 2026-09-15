@@ -1,0 +1,298 @@
+{
+  "departments": [
+    {
+      "id": "cse",
+      "name": "Computer Science & Engineering",
+      "icon": "💻",
+      "subjects": [
+        {
+          "id": "dsa",
+          "name": "Data Structures & Algorithms",
+          "icon": "🌳",
+          "playlists": [
+            {
+              "title": "Data Structures — Abdul Bari (Full Course)",
+              "url": "https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O",
+              "site": "YouTube",
+              "uploader": "Abdul Bari",
+              "description": "Highly rated practical DSA series with animations covering all major data structures and algorithms."
+            },
+            {
+              "title": "Algorithms — MIT OpenCourseWare 6.006",
+              "url": "https://www.youtube.com/playlist?list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb",
+              "site": "MIT OCW",
+              "uploader": "MIT OpenCourseWare",
+              "description": "MIT 6.006 Introduction to Algorithms — hashing, sorting, dynamic programming, graph algorithms."
+            }
+          ]
+        },
+        {
+          "id": "os",
+          "name": "Operating Systems",
+          "icon": "🖥️",
+          "playlists": [
+            {
+              "title": "Operating Systems — NPTEL (IIT Delhi)",
+              "url": "https://www.youtube.com/playlist?list=PLbMVogVj5nJTmKzaSlCpGgi7qxgcRRs8h",
+              "site": "NPTEL",
+              "uploader": "NPTEL IIT Delhi",
+              "description": "Prof. Sorav Bansal's OS course — processes, scheduling, memory management, file systems, synchronisation."
+            },
+            {
+              "title": "Operating Systems — Neso Academy",
+              "url": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O",
+              "site": "YouTube",
+              "uploader": "Neso Academy",
+              "description": "Comprehensive OS lectures covering processes, threads, deadlocks, paging, segmentation and I/O management."
+            }
+          ]
+        },
+        {
+          "id": "dbms",
+          "name": "Database Management Systems",
+          "icon": "🗄️",
+          "playlists": [
+            {
+              "title": "DBMS — Jenny's Lectures CS IT (Full Course)",
+              "url": "https://www.youtube.com/playlist?list=PLdo5W4Nhv31b33kF46f9aFjoJPOkdlsRc",
+              "site": "YouTube",
+              "uploader": "Jenny's Lectures CS IT",
+              "description": "Complete DBMS course covering ER diagrams, relational model, SQL, keys, normalisation (1NF–BCNF) and transactions."
+            },
+            {
+              "title": "DBMS — Gate Smashers",
+              "url": "https://www.youtube.com/playlist?list=PLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Y",
+              "site": "YouTube",
+              "uploader": "Gate Smashers",
+              "description": "GATE-oriented DBMS series — ER diagrams, relational algebra, SQL, keys, normalisation and concurrency control."
+            }
+          ]
+        },
+        {
+          "id": "cn",
+          "name": "Computer Networks",
+          "icon": "🌐",
+          "playlists": [
+            {
+              "title": "Computer Networks — Neso Academy",
+              "url": "https://www.youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx",
+              "site": "YouTube",
+              "uploader": "Neso Academy",
+              "description": "Full CN course with animations — physical layer, data link, network, transport and application layers."
+            }
+          ]
+        },
+        {
+          "id": "ml",
+          "name": "Machine Learning & AI",
+          "icon": "🤖",
+          "playlists": [
+            {
+              "title": "Machine Learning — NPTEL (IIT Madras)",
+              "url": "https://www.youtube.com/playlist?list=PLyqSpQzTE6M9gCgajvQbc68Hk_JKGBAYT",
+              "site": "NPTEL",
+              "uploader": "NPTEL IIT Madras",
+              "description": "Prof. Mitesh Khapra — supervised/unsupervised learning, neural networks, CNNs, RNNs and NLP fundamentals."
+            },
+            {
+              "title": "Machine Learning Crash Course — freeCodeCamp",
+              "url": "https://www.youtube.com/playlist?list=PLWKjhJtqVAblStefaz_YOVpDWqcRScc2s",
+              "site": "freeCodeCamp",
+              "uploader": "freeCodeCamp",
+              "description": "Beginner-friendly ML series covering regression, classification, clustering and neural networks with Python."
+            },
+            {
+              "title": "Deep Learning Specialisation Lectures — Andrew Ng",
+              "url": "https://www.youtube.com/playlist?list=PLkDaE6sCZn6Ec-XTbcX1uRg2_u4xOEky0",
+              "site": "YouTube",
+              "uploader": "DeepLearningAI",
+              "description": "Andrew Ng's Neural Networks and Deep Learning course lectures — foundations of modern deep learning."
+            }
+          ]
+        },
+        {
+          "id": "python",
+          "name": "Python Programming",
+          "icon": "🐍",
+          "playlists": [
+            {
+              "title": "Python for Everybody — freeCodeCamp",
+              "url": "https://www.youtube.com/playlist?list=PLlRFEj9H3Oj7Bp8-DfGpfAfDBiblRfl5p",
+              "site": "freeCodeCamp",
+              "uploader": "freeCodeCamp / Dr. Chuck",
+              "description": "Complete Python course from basics to files, web scraping and databases. University of Michigan series."
+            }
+          ]
+        },
+        {
+          "id": "webdev",
+          "name": "Web Development",
+          "icon": "🌍",
+          "playlists": [
+            {
+              "title": "Sigma Web Development Course — CodeWithHarry",
+              "url": "https://www.youtube.com/playlist?list=PLu0W_9lII9agq5TrH9XLIKQvv0iaF2X3w",
+              "site": "YouTube",
+              "uploader": "CodeWithHarry",
+              "description": "Structured beginner-to-advanced series covering HTML, CSS, JavaScript, Git, React and backend basics in Hindi/English."
+            }
+          ]
+        },
+        {
+          "id": "compiler",
+          "name": "Compiler Design",
+          "icon": "⚙️",
+          "playlists": [
+            {
+              "title": "Compiler Design — Gate Smashers",
+              "url": "https://youtube.com/playlist?list=PLxCzCOWd7aiEKtKSIHYusizkESC42diyc",
+              "site": "YouTube",
+              "uploader": "Gate Smashers",
+              "description": "GATE-oriented compiler design — DFA/NFA, grammar types, lexical analysis, parsing, parse trees and code generation."
+            }
+          ]
+        },
+        {
+          "id": "dm",
+          "name": "Discrete Mathematics",
+          "icon": "🔢",
+          "playlists": [
+            {
+              "title": "Discrete Mathematics — Trefor Bazett",
+              "url": "https://www.youtube.com/playlist?list=PLHXZ9OQGMqxersk8fUxiUMSIx0DBqsKZS",
+              "site": "YouTube",
+              "uploader": "Dr. Trefor Bazett",
+              "description": "Clear, visual lectures on propositional logic, sets, proofs, combinatorics and graph theory."
+            }
+          ]
+        },
+        {
+          "id": "se",
+          "name": "Software Engineering",
+          "icon": "🛠️",
+          "playlists": [
+            {
+              "title": "Software Engineering Full Course — CS & IT Tutorials",
+              "url": "https://youtube.com/playlist?list=PLQ-nEJNYlEV29CBLzIDxcogm6CEZjVad2",
+              "site": "YouTube",
+              "uploader": "CS & IT Tutorials by Vrushali",
+              "description": "Comprehensive SDLC series covering all process models, requirements engineering, design, testing and maintenance."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "commerce",
+      "name": "Commerce & Management",
+      "icon": "📊",
+      "subjects": [
+        {
+          "id": "stats",
+          "name": "Business Statistics",
+          "icon": "📈",
+          "playlists": [
+            {
+              "title": "Statistics — Khan Academy",
+              "url": "https://www.youtube.com/playlist?list=PL1328115D3D8A2566",
+              "site": "Khan Academy",
+              "uploader": "Khan Academy",
+              "description": "Descriptive statistics, probability, distributions, hypothesis testing and regression analysis."
+            }
+          ]
+        },
+        {
+          "id": "entre",
+          "name": "Entrepreneurship",
+          "icon": "🚀",
+          "playlists": [
+            {
+              "title": "How to Start a Startup — Y Combinator / Stanford",
+              "url": "https://www.youtube.com/playlist?list=PL5q_lef6zVkaTY_cT1k7qFNF2TidHCe-1",
+              "site": "YouTube",
+              "uploader": "Y Combinator",
+              "description": "Sam Altman's legendary Stanford course — product-market fit, team building, fundraising and growth."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sciences",
+      "name": "Sciences",
+      "icon": "🔬",
+      "subjects": [
+        {
+          "id": "engmaths",
+          "name": "Engineering Mathematics",
+          "icon": "➗",
+          "playlists": [
+            {
+              "title": "Calculus — Khan Academy",
+              "url": "https://www.youtube.com/playlist?list=PL19E79A0638C8D449",
+              "site": "Khan Academy",
+              "uploader": "Khan Academy",
+              "description": "Limits, derivatives, integrals, multivariable calculus and series with visual explanations."
+            },
+            {
+              "title": "Linear Algebra — MIT OpenCourseWare (18.06)",
+              "url": "https://www.youtube.com/playlist?list=PL49CF3715CB9EF31D",
+              "site": "MIT OCW",
+              "uploader": "MIT OpenCourseWare",
+              "description": "Prof. Gilbert Strang's iconic linear algebra course — vectors, matrices, eigenvalues and SVD."
+            }
+          ]
+        },
+        {
+          "id": "biology",
+          "name": "Biology Fundamentals",
+          "icon": "🧬",
+          "playlists": [
+            {
+              "title": "Biology — CrashCourse",
+              "url": "https://www.youtube.com/playlist?list=PL8dPuuaLjXtPW_ofbxdHNciuLoTRLPMgB",
+              "site": "YouTube",
+              "uploader": "CrashCourse",
+              "description": "50-episode introductory biology series — cell biology, genetics, evolution, physiology and ecology with animations."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hss",
+      "name": "Humanities & Social Sciences",
+      "icon": "📚",
+      "subjects": [
+        {
+          "id": "economics",
+          "name": "Economics",
+          "icon": "💹",
+          "playlists": [
+            {
+              "title": "Principles of Economics — MIT OCW (14.01)",
+              "url": "https://www.youtube.com/playlist?list=PLUl4u3cNGP62oJSoqb4Rf-vZMGUBe59G-",
+              "site": "MIT OCW",
+              "uploader": "MIT OpenCourseWare",
+              "description": "MIT's introductory economics course covering microeconomic theory and its applications."
+            }
+          ]
+        },
+        {
+          "id": "history",
+          "name": "World History & Culture",
+          "icon": "🏛️",
+          "playlists": [
+            {
+              "title": "World History — CrashCourse",
+              "url": "https://www.youtube.com/playlist?list=PLBDA2E52FB1EF80C9",
+              "site": "YouTube",
+              "uploader": "CrashCourse",
+              "description": "John Green's 42-episode world history series from the First Agricultural Revolution to the modern era — AP World History curriculum."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

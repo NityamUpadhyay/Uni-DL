@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UniDL — Universal Downloader</title>
+<script>
+  // Applied before CSS paints to avoid theme flash.
+  (function(){
+    var STORAGE_KEY = 'unidl-theme-mode';
+    var mode = localStorage.getItem(STORAGE_KEY) || 'dark';
+    document.documentElement.setAttribute('data-theme', mode === 'light' ? 'light' : 'dark');
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="app-frame">
+  <!-- TITLE BAR -->
+  <div class="titlebar">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <div class="unidl-brand">
+      <span class="brand-icon">⬇️</span>
+      <span class="brand-name">UniDL</span>
+      <span class="brand-tagline">Universal Downloader</span>
+    </div>
+    <div class="titlebar-status" id="engineStatus"><span class="status-dot"></span>ready</div>
+    <div class="theme-toggle" id="themeToggle">
+      <button type="button" data-mode="light" title="Light mode">☀️</button>
+      <button type="button" data-mode="dark" title="Dark mode">🌙</button>
+    </div>
+  </div>
+
+  <!-- MODE TABS (Catalogue / Resources / URL) -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" id="tabCatalogue" data-mode="catalogue">
+      <span class="tab-icon">📚</span><span class="tab-label">Catalogue</span>
+    </button>
+    <button class="mode-tab" id="tabResources" data-mode="resources">
+      <span class="tab-icon">📖</span><span class="tab-label">Resources</span>
+    </button>
+    <button class="mode-tab" id="tabUrl" data-mode="url">
+      <span class="tab-icon">🔗</span><span class="tab-label">Paste URL</span>
+    </button>
+    <div class="tab-indicator"></div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- ===================== CATALOGUE MODE ===================== -->
+    <div id="catalogueMode" class="mode-panel">
+      <!-- Catalogue search -->
+      <section class="search-bar">
+        <span class="prompt">🔍</span>
+        <input id="catSearch" type="text" placeholder="search playlists by name, subject or department…" autocomplete="off">
+        <button id="catClearBtn" class="btn btn-ghost hidden">✕ clear</button>
+      </section>
+
+      <div id="catLoadingBox" class="loading">loading catalogue<span class="cursor">_</span></div>
+      <div id="catErrorBox" class="error-box hidden"></div>
+
+      <!-- Department accordion + playlist cards render here -->
+      <div id="catalogueGrid"></div>
+    </div>
+
+    <!-- ===================== RESOURCES MODE ===================== -->
+    <div id="resourcesMode" class="mode-panel hidden">
+
+      <!-- Book / PDF Search -->
+      <section class="search-bar res-search-bar">
+        <span class="prompt">📖</span>
+        <input id="resSearch" type="text" placeholder="search books, PDFs, slides… e.g. 'data structures', 'calculus'" autocomplete="off">
+        <select id="resSource" class="res-source-select">
+          <option value="all">All Sources</option>
+          <option value="openlibrary">📗 Open Library</option>
+          <option value="archive">🏛 Internet Archive</option>
+        </select>
+        <button id="resSearchBtn" class="btn btn-primary">🔍 Search</button>
+        <a id="resScholarBtn" href="#" target="_blank" rel="noopener" class="btn btn-ghost" title="Open Google Scholar search in browser">🎓 Scholar</a>
+      </section>
+
+      <div id="resLoadingBox" class="loading hidden">searching<span class="cursor">_</span></div>
+      <div id="resErrorBox" class="error-box hidden"></div>
+      <div id="resResultsCount" class="dim res-count hidden"></div>
+      <div id="resResults" class="res-grid"></div>
+
+      <hr class="res-divider">
+
+      <!-- Document URL paster (SlideShare / Scribd / Direct PDF) -->
+      <section class="res-paste-section">
+        <div class="res-paste-header">
+          <h3>📄 Paste a Document URL</h3>
+          <div class="res-paste-badges">
+            <span class="res-badge slideshare">🎞 SlideShare</span>
+            <span class="res-badge scribd">📜 Scribd</span>
+            <span class="res-badge direct">🔗 Direct PDF/PPT</span>
+          </div>
+        </div>
+
+        <!-- Chrome warning for Scribd (shown only when Scribd URL detected) -->
+        <div id="scribdWarning" class="res-warning hidden">
+          ⚠️ <strong>Scribd requires Google Chrome</strong> — the downloader will launch a headless Chrome window to save this document. Make sure Chrome is installed on your PC.
+        </div>
+
+        <div class="search-bar">
+          <span class="prompt" id="docUrlIcon">📎</span>
+          <input id="docUrlInput" type="text" placeholder="https://www.slideshare.net/… or https://www.scribd.com/…" autocomplete="off">
+          <button id="docDownloadBtn" class="btn btn-accent">⬇️ Download</button>
+        </div>
+        <div id="docUrlHint" class="hint">Paste a SlideShare, Scribd, or any direct .pdf / .pptx link — the type is detected automatically.</div>
+      </section>
+    </div><!-- /resourcesMode -->
+
+    <!-- ===================== URL MODE ===================== -->
+    <div id="urlMode" class="mode-panel hidden">
+      <section class="search-bar">
+        <span class="prompt">🔗</span>
+        <input id="urlInput" type="text" placeholder="paste any URL — video, playlist, NPTEL, MIT OCW, YouTube…" autocomplete="off">
+        <button id="analyzeBtn" class="btn btn-primary">🔍 Analyze</button>
+      </section>
+      <div id="errorBox" class="error-box hidden"></div>
+      <div id="loadingBox" class="loading hidden">reading formats<span class="cursor">_</span></div>
+
+      <!-- PLAYLIST VIEW -->
+      <section id="playlistSection" class="panel hidden">
+        <div class="panel-head">
+          <h2>📋 <span id="playlistTitle">Playlist</span></h2>
+          <span class="badge" id="playlistCount"></span>
+        </div>
+
+        <div class="quick-row">
+          <span class="quick-label">download entire playlist:</span>
+          <button class="btn" data-preset="bv*+ba/b" data-mp3="0" data-playlist="1">⚡ best (video+audio)</button>
+          <button class="btn" data-preset="bestaudio" data-mp3="0" data-playlist="1">🎧 best audio only</button>
+          <button class="btn" data-preset="bestaudio" data-mp3="1" data-playlist="1">🎵 best audio → mp3</button>
+        </div>
+        <div class="subtitle-row">
+          <label class="sub-check-label">
+            <input type="checkbox" id="dlSubtitles"> 💬 download subtitles (.srt)
+          </label>
+        </div>
+
+        <div class="hint">or click a single video below to pick its exact format</div>
+        <div id="playlistItems" class="playlist-items"></div>
+      </section>
+
+      <!-- SINGLE VIDEO VIEW -->
+      <section id="videoSection" class="panel hidden">
+        <div class="video-head">
+          <img id="videoThumb" class="thumb" src="" alt="">
+          <div>
+            <h2 id="videoTitle"></h2>
+            <div class="meta"><span id="videoUploader"></span> <span id="videoDuration" class="dim"></span></div>
+            <button id="backToPlaylist" class="btn btn-ghost hidden">&larr; back to playlist</button>
+          </div>
+        </div>
+
+        <div class="quick-row">
+          <span class="quick-label">quick download:</span>
+          <button class="btn btn-accent" data-preset="bv*+ba/b" data-mp3="0">⚡ best (default)</button>
+          <button class="btn" data-preset="bestvideo+bestaudio" data-mp3="0">🔀 best video + best audio (merge)</button>
+          <button class="btn" data-preset="bestaudio" data-mp3="0">🎧 best audio only</button>
+          <button class="btn" data-preset="bestaudio" data-mp3="1">🎵 best audio → mp3</button>
+          <button class="btn" data-preset="bestvideo" data-mp3="0">🎞️ best video only</button>
+        </div>
+
+        <div class="combo-row">
+          <span class="quick-label">🧩 build combo:</span>
+          <select id="comboVideo"><option value="">— video-only format —</option></select>
+          <span class="plus">+</span>
+          <select id="comboAudio"><option value="">— audio-only format —</option></select>
+          <button id="comboBtn" class="btn btn-accent" disabled>⬇️ download combo</button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="combined">🧩 combined</button>
+          <button class="tab" data-tab="video_only">🎞️ video only</button>
+          <button class="tab" data-tab="audio_only">🎵 audio only</button>
+        </div>
+        <div class="hint tabs-hint">Tip: rows here are often auto-paired (best matching audio merged with each video quality).</div>
+
+        <div class="table-wrap">
+          <table id="formatTable">
+            <thead>
+              <tr>
+                <th>id</th><th>ext</th><th>res / abr</th><th>fps</th><th>codec</th><th>bitrate</th><th>size</th><th>note</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="formatBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div><!-- /urlMode -->
+
+    <!-- ===================== DOWNLOADS PANEL ===================== -->
+    <section class="panel dl-panel">
+      <div class="panel-head">
+        <h2>📥 Downloads</h2>
+        <div class="outdir-row">
+          <label for="outDir" class="dim">save to</label>
+          <input id="outDir" type="text" value="{{ default_dir }}">
+          <button id="openFolderBtn" class="btn btn-ghost">📁 open folder</button>
+        </div>
+      </div>
+      <div id="jobsList" class="jobs-list">
+        <div class="empty-state dim">nothing downloading yet — browse the catalogue or paste a URL above</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <span>UniDL — Universal Downloader</span>
+    <span class="footer-sep">·</span>
+    powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener">yt-dlp</a>
+    <span class="footer-sep">·</span>
+    <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>
+    <span class="footer-sep">·</span>
+    <a href="https://archive.org" target="_blank" rel="noopener">Internet Archive</a>
+  </footer>
+</div>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
