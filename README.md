@@ -193,7 +193,7 @@ Contributions are welcome! Here are some good first issues to start with:
 ### Development setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Uni-DL.git
+git clone https://github.com/NityamUpadhyay/Uni-DL.git
 cd Uni-DL
 pip install -r requirements.txt
 python app.py
